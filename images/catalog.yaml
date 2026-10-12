@@ -10,7 +10,7 @@ images:
     eol: "2029-10-31"
   - name: python
     version: "3.10"
-    digest: sha256:5d58622f4b93c3d0e1e06810a23795af66afc80a27b5d05a9bfcce5ef8477b4a
+    digest: sha256:e894e53c81111533b90e41886a45916b946ca21b4baea4e1e32b282a063911de
     status: deprecated
     released: "2021-10-04"
     eol: "2026-10-31"
@@ -22,7 +22,7 @@ images:
     eol: "2029-12-31"
   - name: java
     version: "26"
-    digest: sha256:3ed6cfd3259e8c6e4e5d11b7b611b9c1419fe2e2b6cfd7f45af6804ae0758e5e
+    digest: sha256:093236f5590b59f330253711e2e263a97e01e44f105509798b13d6564388dcbd
     status: eol
     released: "2026-03-23"
     eol: "2026-09-15"
