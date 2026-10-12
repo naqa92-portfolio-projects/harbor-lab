@@ -937,6 +937,9 @@ M9 interface assumed by `tests/platform/demo_scenarios.bats` (CAT-023, loading `
   with that `token` and the project's `project_uuid` (M6 VEX observables); `GET /api/v1/event/token/<token>` answers
   `COMPLETED` right after the task returned; the output holds no `NOT_AFFECTED` (no finding-level claim while
   DependencyTrack/dependency-track#6132 is open).
+- Docs: the narrative documents (architecture, threat model, ADRs, roadmap, demo runbook, workarounds) now live on
+  the case-study site (`harbor-docs`); `tests/docs/*.bats` checks `README.md` only (links to that site, prerequisites,
+  memory budget, demo scenario table, operator statements). The bullets below record the PRD-phase checks.
 - Docs (`tests/docs/docs.bats`, read statically): `README.md`, `docs/ARCHITECTURE.md`, `docs/THREAT-MODEL.md`,
   `docs/DEMO.md`, `docs/ROADMAP.md` non-empty.
   - ADRs: `docs/adr/NNNN-<slug>.md`, title on the first `# ` line, sections `## Context`, `## Decision`,

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Admission demo: submits one pod whose image or spec breaks one workload rule into namespace $2 and
-# exits 0 only when the platform reacted as docs/DEMO.md documents.
+# exits 0 only when the platform reacted as expected for that scenario (see the scenario table in README.md).
 # Usage: demo-admission.sh <scenario> <namespace>
 set -euo pipefail
 
@@ -135,5 +135,5 @@ if [ "$ACTION" = warn ] && [ "$created" -eq 0 ] && [ "$exists" = true ] &&
   echo "demo:$SCENARIO: admitted by the platform with the documented warning"
   exit 0
 fi
-echo "demo:$SCENARIO: the platform did not react as documented in docs/DEMO.md (pod created: $exists)" >&2
+echo "demo:$SCENARIO: the platform did not react as documented (pod created: $exists)" >&2
 exit 1

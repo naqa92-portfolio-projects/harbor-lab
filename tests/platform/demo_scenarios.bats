@@ -1,5 +1,5 @@
 #!/usr/bin/env bats
-# Demo scenarios, live: each `task demo:<scenario>` exits 0 when the platform reacts as docs/DEMO.md documents,
+# Demo scenarios, live: each `task demo:<scenario>` exits 0 when the platform reacts as the README scenario table documents,
 # and an admission scenario run in a platform-tier namespace, where no workload policy reacts, exits non-zero.
 
 bats_require_minimum_version 1.5.0
