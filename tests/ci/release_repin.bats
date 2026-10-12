@@ -9,7 +9,7 @@ APP_DOCKERFILES=(apps/dt-bridge/Dockerfile apps/hello-java/Dockerfile apps/runti
 WORKLOADS=(platform/workloads/dt-bridge/dt-bridge.yaml platform/workloads/hello-java/hello-java.yaml
   platform/workloads/runtime-demo/runtime-demo.yaml)
 DEMO_FIXTURES=images/demo-fixtures.yaml
-GHCR=ghcr.io/naqa92-portfolio-projects/harborlab
+GHCR=ghcr.io/naqa92-portfolio-projects/harbor-lab
 NEW_PYTHON=sha256:1111111111111111111111111111111111111111111111111111111111111111
 NEW_JAVA=sha256:2222222222222222222222222222222222222222222222222222222222222222
 NEW_HELLO_JAVA=sha256:3333333333333333333333333333333333333333333333333333333333333333

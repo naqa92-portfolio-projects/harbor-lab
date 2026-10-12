@@ -7,7 +7,7 @@ PLATFORM_KUBECONFIG="$REPO_ROOT/.kube/harborlab.yaml"
 CATALOG=images/catalog.yaml
 HARBOR_HOST=harbor.127.0.0.1.nip.io
 APPS_PROJECT=apps
-GHCR_APPS=ghcr.io/naqa92-portfolio-projects/harborlab/apps
+GHCR_APPS=ghcr.io/naqa92-portfolio-projects/harbor-lab/apps
 WORKLOAD_LABEL=harborlab.io/tier=workload
 PSA_LABEL=pod-security.kubernetes.io/enforce
 TRUST_BUNDLE=harborlab-trust
@@ -16,7 +16,7 @@ CA_NAMESPACE=cert-manager
 CA_SECRET=harborlab-ca
 APP_PORT=8080
 OIDC_ISSUER=https://token.actions.githubusercontent.com
-BUILD_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$'
+BUILD_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$'
 # Workload policies by admission action: the Deny ones block, the Warn one only warns (Ignore on webhook failure).
 DENY_POLICIES=(workload-image-signature workload-golden-base workload-image-labels workload-registry)
 WARN_POLICIES=(workload-golden-base-deprecated)

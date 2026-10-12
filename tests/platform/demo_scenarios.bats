@@ -25,8 +25,8 @@ TIER_LABEL_KEY=harborlab.io/tier
 TIER_REQUIRED_TEXT='pods run only in a namespace labelled harborlab.io/tier=workload or harborlab.io/tier=platform'
 GOLDEN_IMAGES_CONFIGMAP=golden-images
 KYVERNO_NAMESPACE=kyverno
-BUILD_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$'
-GOLDEN_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/(golden|build-image)\.yml@refs/heads/(main|prd-.+)$'
+BUILD_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$'
+GOLDEN_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/(golden|build-image)\.yml@refs/heads/(main|prd-.+)$'
 CATALOG=images/catalog.yaml
 HARBOR_WORKLOAD_RE='^harbor\.127\.0\.0\.1\.nip\.io/(golden|apps)/'
 DOCKER_HUB_HOSTS_RE='^(docker\.io|index\.docker\.io|registry-1\.docker\.io)$'

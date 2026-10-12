@@ -24,8 +24,8 @@ VULN_METRIC=harborlab_image_vulnerabilities
 RUNNING_METRIC=harborlab_running_containers
 SEVERITIES=(critical high medium low unknown)
 HARBOR_REPORT_TYPE='application/vnd.security.vulnerability.report; version=1.1'
-GOLDEN_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/(golden|build-image)\.yml@refs/heads/(main|prd-.+)$'
-BUILD_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$'
+GOLDEN_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/(golden|build-image)\.yml@refs/heads/(main|prd-.+)$'
+BUILD_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$'
 GOLDEN_LABEL=io.harborlab.golden.name
 OPENVEX_PREDICATE_TYPE=https://openvex.dev/ns/v0.2.0
 INTOTO_ARTIFACT_TYPE=application/vnd.in-toto+json

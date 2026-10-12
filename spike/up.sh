@@ -9,7 +9,7 @@ NODE="$CLUSTER-control-plane"
 HARBOR_HOST=harbor.127.0.0.1.nip.io
 HARBOR_CHART_VERSION=1.19.2
 KYVERNO_CHART_VERSION=3.9.1
-GHCR_REPOSITORY=naqa92-portfolio-projects/harborlab/spike/hello
+GHCR_REPOSITORY=naqa92-portfolio-projects/harbor-lab/spike/hello
 UNSIGNED_SOURCE=docker.io/library/busybox:1.36.1
 SYSTEM_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 

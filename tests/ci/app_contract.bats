@@ -12,8 +12,8 @@ APPS=(
   "hello-java|java"
 )
 LOCAL_BUILD_USES=./.github/workflows/build-image.yml
-REMOTE_BUILD_USES='^naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@[0-9a-f]{40}$'
-GOLDEN_REFERENCE='^(ghcr\.io/naqa92-portfolio-projects/harborlab/golden|harbor\.127\.0\.0\.1\.nip\.io/golden)/([a-z0-9-]+)(:[^@/]+)?@(sha256:[0-9a-f]{64})$'
+REMOTE_BUILD_USES='^naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@[0-9a-f]{40}$'
+GOLDEN_REFERENCE='^(ghcr\.io/naqa92-portfolio-projects/harbor-lab/golden|harbor\.127\.0\.0\.1\.nip\.io/golden)/([a-z0-9-]+)(:[^@/]+)?@(sha256:[0-9a-f]{64})$'
 # The only permissions a caller grants, the ones build-image.yml needs to push, sign and attest.
 ALLOWED_PERMISSIONS='{"contents": "read", "packages": "write", "id-token": "write"}'
 SECURITY_TOOLING='cosign|syft|trivy|grype|notation|sigstore|attest|sbom|provenance'

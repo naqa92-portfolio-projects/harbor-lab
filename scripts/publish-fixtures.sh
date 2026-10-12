@@ -5,7 +5,7 @@
 # copy chooses which bundles it carries.
 set -euo pipefail
 
-PREFIX="${1:?usage: $0 <registry prefix, e.g. ghcr.io/owner/harborlab> <commit sha>}"
+PREFIX="${1:?usage: $0 <registry prefix, e.g. ghcr.io/owner/harbor-lab> <commit sha>}"
 SHA="${2:?usage: $0 <registry prefix> <commit sha>}"
 BUILT=(compliant missing-labels deprecated-base eol-base unknown-base demo-deprecated-base demo-eol-base)
 SIGNATURE_TYPE=https://sigstore.dev/cosign/sign/v1

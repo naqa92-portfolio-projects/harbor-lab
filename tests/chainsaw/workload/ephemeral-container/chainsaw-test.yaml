@@ -50,7 +50,7 @@ spec:
         - script:
             content: >-
               kubectl debug -n "$NAMESPACE" debug-target --container=debug-unsigned --profile=restricted
-              --image="ghcr.io/naqa92-portfolio-projects/harborlab/fixtures/unsigned:$(../../../fixtures/fixture-tag.sh)"
+              --image="ghcr.io/naqa92-portfolio-projects/harbor-lab/fixtures/unsigned:$(../../../fixtures/fixture-tag.sh)"
               -- sleep 3600
             check:
               ($error != null): true

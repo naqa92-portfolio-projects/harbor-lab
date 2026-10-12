@@ -42,18 +42,18 @@ locals {
   # a wildcard name filter fails every execution, so each filter names its repositories. No tag
   # filter: the cosign referrers fallback tags (sha256-*) are replicated with the images.
   governed_projects = {
-    golden = { ghcr_filter = "naqa92-portfolio-projects/harborlab/golden/{${join(",", local.golden_names)}}" }
-    apps   = { ghcr_filter = "naqa92-portfolio-projects/harborlab/apps/{dt-bridge,hello-java}" }
+    golden = { ghcr_filter = "naqa92-portfolio-projects/harbor-lab/golden/{${join(",", local.golden_names)}}" }
+    apps   = { ghcr_filter = "naqa92-portfolio-projects/harbor-lab/apps/{dt-bridge,hello-java}" }
   }
 
   # The runtime-detection demo target lands in `apps` through its own policy, apart from the applications.
-  runtime_demo_filter = "naqa92-portfolio-projects/harborlab/apps/runtime-demo"
+  runtime_demo_filter = "naqa92-portfolio-projects/harbor-lab/apps/runtime-demo"
 
   # Non-compliant admission fixtures the `task demo:*` scenarios submit from Harbor `apps`, where only
   # admission can reject them (flattened: fixtures/unsigned lands as apps/unsigned).
   # Only their immutable sha-<commit> tag of images/demo-fixtures.yaml and the referrers fallback tags are
   # pulled: the moving `e2e` tag would conflict with Harbor's immutable tags.
-  demo_fixtures_filter = "naqa92-portfolio-projects/harborlab/fixtures/{unsigned,foreign-signer,unknown-base,demo-deprecated-base,demo-eol-base}"
+  demo_fixtures_filter = "naqa92-portfolio-projects/harbor-lab/fixtures/{unsigned,foreign-signer,unknown-base,demo-deprecated-base,demo-eol-base}"
   demo_fixtures_tag    = "{sha-${yamldecode(file("${path.module}/../../images/demo-fixtures.yaml")).commit},sha256-*}"
 
   # Harbor cron expressions carry a leading seconds field.

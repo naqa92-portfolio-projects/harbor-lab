@@ -36,9 +36,9 @@ spec:
                     - name: dt-bridge
                       env:
                         - name: SIGNER_IDENTITY_GOLDEN
-                          value: https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/(golden|build-image)\.yml@refs/heads/{{ include "harborlab.trustedRefs" . }}
+                          value: https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/(golden|build-image)\.yml@refs/heads/{{ include "harborlab.trustedRefs" . }}
                         - name: SIGNER_IDENTITY_APPS
-                          value: https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@refs/heads/{{ include "harborlab.trustedRefs" . }}
+                          value: https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@refs/heads/{{ include "harborlab.trustedRefs" . }}
     {{- end }}
   syncPolicy:
     {{- toYaml .Values.syncPolicy | nindent 4 }}

@@ -25,7 +25,7 @@ spec:
         workload: |
           harbor.127.0.0.1.nip.io/golden/
           harbor.127.0.0.1.nip.io/apps/
-          ghcr.io/naqa92-portfolio-projects/harborlab/fixtures/
+          ghcr.io/naqa92-portfolio-projects/harbor-lab/fixtures/
         platform: |
           harbor.127.0.0.1.nip.io
           docker.io

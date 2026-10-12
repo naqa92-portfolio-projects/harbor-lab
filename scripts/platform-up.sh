@@ -10,7 +10,7 @@ PLATFORM_KUBECONFIG="$REPO_ROOT/.kube/harborlab.yaml"
 LOCAL_DIR="$REPO_ROOT/.local"
 CA_DIR="$LOCAL_DIR/ca"
 OPENBAO_INIT="$LOCAL_DIR/openbao/init.json"
-REPO_URL=https://github.com/naqa92-portfolio-projects/harborlab.git
+REPO_URL=https://github.com/naqa92-portfolio-projects/harbor-lab.git
 HARBOR_HOST=harbor.127.0.0.1.nip.io
 DT_HOST=dependency-track.127.0.0.1.nip.io
 # Least privilege of the dt-bridge API key: upload BOM and VEX, read findings; no portfolio management.

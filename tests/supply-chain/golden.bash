@@ -1,7 +1,7 @@
 # Golden images published by golden.yml for the checked-out history, and their cosign checks.
 # The branch comes from GOLDEN_REF (refs/heads/<branch>) or the checked-out branch.
 
-GITHUB_REPO=naqa92-portfolio-projects/harborlab
+GITHUB_REPO=naqa92-portfolio-projects/harbor-lab
 GHCR_GOLDEN="ghcr.io/$GITHUB_REPO/golden"
 GOLDEN_IMAGES=(python java)
 GOLDEN_WORKFLOW=golden.yml
@@ -10,7 +10,7 @@ DHI_STEP="Verify DHI base signature"
 OIDC_ISSUER=https://token.actions.githubusercontent.com
 FOREIGN_IDENTITY='^https://github\.com/sigstore/cosign/\.github/workflows/.+$'
 # Same repository, another workflow: the identity is bound to the workflow file, not only the repo.
-OTHER_WORKFLOW_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/spike\.yml@.+$'
+OTHER_WORKFLOW_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/spike\.yml@.+$'
 
 fail() {
   echo "$*" >&2

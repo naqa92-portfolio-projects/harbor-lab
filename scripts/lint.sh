@@ -4,7 +4,7 @@
 set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-GOLDEN_REFERENCE='^(ghcr\.io/naqa92-portfolio-projects/harborlab/golden|harbor\.127\.0\.0\.1\.nip\.io/golden)/([a-z0-9-]+)(:[^@/]+)?@(sha256:[0-9a-f]{64})$'
+GOLDEN_REFERENCE='^(ghcr\.io/naqa92-portfolio-projects/harbor-lab/golden|harbor\.127\.0\.0\.1\.nip\.io/golden)/([a-z0-9-]+)(:[^@/]+)?@(sha256:[0-9a-f]{64})$'
 PINNED_USES='^([^@[:space:]]+@[0-9a-f]{40}|\./.+|docker://[^@[:space:]]+@sha256:[0-9a-f]{64})$'
 # The only BuildKit frontend a `# syntax=` directive may name: a custom one decides the base itself.
 OFFICIAL_FRONTEND='^(docker\.io/)?docker/dockerfile(:[A-Za-z0-9._-]+)?(@sha256:[0-9a-f]{64})?$'

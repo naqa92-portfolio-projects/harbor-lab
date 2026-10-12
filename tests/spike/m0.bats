@@ -5,9 +5,9 @@
 REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/../.." && pwd)"
 CLUSTER=harborlab-spike
 HARBOR_HOST=harbor.127.0.0.1.nip.io
-GHCR_SPIKE_IMAGE=ghcr.io/naqa92-portfolio-projects/harborlab/spike/hello:m0
+GHCR_SPIKE_IMAGE=ghcr.io/naqa92-portfolio-projects/harbor-lab/spike/hello:m0
 OIDC_ISSUER=https://token.actions.githubusercontent.com
-SPIKE_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/spike\.yml@refs/.+$'
+SPIKE_IDENTITY='^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/spike\.yml@refs/.+$'
 FOREIGN_IDENTITY='^https://github\.com/sigstore/cosign/\.github/workflows/.+$'
 MIRROR_IMAGE=docker.io/library/busybox:1.36.1
 

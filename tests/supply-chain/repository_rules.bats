@@ -2,7 +2,7 @@
 # Branch rules of the GitHub repository, live through the GitHub API: one active ruleset on the default
 # branch main blocks its deletion and force-pushes, and requires nothing else (no reviews, no status checks).
 
-GITHUB_REPO=naqa92-portfolio-projects/harborlab
+GITHUB_REPO=naqa92-portfolio-projects/harbor-lab
 EXPECTED_RULES="deletion non_fast_forward"
 
 fail() {

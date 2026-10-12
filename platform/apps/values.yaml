@@ -1,5 +1,5 @@
 # Git source of the platform manifests; `task up` sets `revision` to the checked-out branch.
-repoURL: https://github.com/naqa92-portfolio-projects/harborlab.git
+repoURL: https://github.com/naqa92-portfolio-projects/harbor-lab.git
 revision: main
 
 # `root` syncs its Applications by sync wave, each wave once the previous one is Healthy:

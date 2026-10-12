@@ -5,7 +5,7 @@
 
 REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/../.." && pwd)"
 BUILD_WORKFLOW=.github/workflows/build-image.yml
-REPOSITORY=naqa92-portfolio-projects/harborlab
+REPOSITORY=naqa92-portfolio-projects/harbor-lab
 SIGNATURE_POLICY=policies/workload/image-signature.yaml
 DT_BRIDGE_MANIFEST=platform/workloads/dt-bridge/dt-bridge.yaml
 SAN_MAIN="https://github.com/$REPOSITORY/.github/workflows/build-image.yml@refs/heads/main"

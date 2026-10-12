@@ -30,7 +30,7 @@ M0 spike interface assumed by `tests/spike/m0.bats` (CAT-000):
   `HARBOR_ADMIN_PASSWORD` (user `admin`); Harbor workloads are the Deployments and StatefulSets of
   namespace `harbor`.
 - `.github/workflows/spike.yml` publishes the public image
-  `ghcr.io/naqa92-portfolio-projects/harborlab/spike/hello:m0`, keyless-signed and attested
+  `ghcr.io/naqa92-portfolio-projects/harbor-lab/spike/hello:m0`, keyless-signed and attested
   (`cyclonedx`, `spdxjson`, `slsaprovenance1`); Harbor public project `spike` holds it as
   `spike/hello:m0` (replicated, same digest) and an unsigned image `spike/unsigned:m0`.
 - Kyverno ImageValidatingPolicy `spike-verify-harbor` enforces the spike identity on
@@ -151,8 +151,8 @@ M2 interface assumed by `tests/platform/harbor_configure.bats` (CAT-003; its sta
     `http://dt-bridge.dt-bridge.svc.cluster.local:8080/harbor/events` (placeholder until M6), event
     types including `PUSH_ARTIFACT` and `REPLICATION`;
   - a pull-replication policy from endpoint `ghcr`: `golden-from-ghcr` (name filter
-    `naqa92-portfolio-projects/harborlab/golden/{python,java}`) and `apps-from-ghcr`
-    (`naqa92-portfolio-projects/harborlab/apps/{dt-bridge,hello-java}`) — amended in M3: Harbor's
+    `naqa92-portfolio-projects/harbor-lab/golden/{python,java}`) and `apps-from-ghcr`
+    (`naqa92-portfolio-projects/harbor-lab/apps/{dt-bridge,hello-java}`) — amended in M3: Harbor's
     `github-ghcr` adapter cannot list GHCR repositories and fails every execution of a wildcard name
     filter (`only support specific repository name`, observed on `golden/**`); a specific name or a
     single `{a,b}` list is accepted — enabled, `dest_namespace` the project,
@@ -224,7 +224,7 @@ M3 interface assumed by `tests/ci/catalog.bats` (CAT-008), `tests/ci/platform_li
   | `hadolint` | every Dockerfile, failing on `error` severity at least |
   | `trivy-config` | `trivy config` on the target, failing on HIGH and CRITICAL |
   | `kube-linter` | Kubernetes manifests (e.g. `deploy/*.yaml`) |
-  | `from-golden` | every Dockerfile's `FROM` must be `ghcr.io/naqa92-portfolio-projects/harborlab/golden/<name>[:<tag>]@sha256:<digest>` or `harbor.127.0.0.1.nip.io/golden/<name>[:<tag>]@sha256:<digest>` with (`name`, `digest`) a `supported` entry of the target's `images/catalog.yaml` |
+  | `from-golden` | every Dockerfile's `FROM` must be `ghcr.io/naqa92-portfolio-projects/harbor-lab/golden/<name>[:<tag>]@sha256:<digest>` or `harbor.127.0.0.1.nip.io/golden/<name>[:<tag>]@sha256:<digest>` with (`name`, `digest`) a `supported` entry of the target's `images/catalog.yaml` |
   Exclusions: `tests/**` (deliberately non-compliant fixtures) for every file-based check;
   `images/golden/**` (built FROM DHI) and `spike/**` for `from-golden`. The clean fixture the test
   builds (catalog, `apps/hello/Dockerfile` FROM a supported golden digest with `USER 65532:65532`, a
@@ -239,7 +239,7 @@ M3 interface assumed by `tests/ci/catalog.bats` (CAT-008), `tests/ci/platform_li
   trigger on that branch and/or `workflow_dispatch`); the images are then signed with the identity of
   that branch (`refs/heads/<branch>`). Sources `images/golden/{python,java}/Dockerfile`, whose first
   `FROM` is a digest-pinned `dhi.io/<repo>[:<tag>]@sha256:<digest>` (Renovate-managed).
-  - Publishes `ghcr.io/naqa92-portfolio-projects/harborlab/golden/{python,java}` (public), each run
+  - Publishes `ghcr.io/naqa92-portfolio-projects/harbor-lab/golden/{python,java}` (public), each run
     tagging its image `sha-<github.sha>` (40 hex); tags are never overwritten (Harbor `golden` tags
     are immutable), so a run that finds its tag present does not push it again.
   - Signs and attests keyless (cosign v3 bundles, ADR 0001) each digest: signature, `cyclonedx`
@@ -247,7 +247,7 @@ M3 interface assumed by `tests/ci/catalog.bats` (CAT-008), `tests/ci/platform_li
     `buildDefinition.resolvedDependencies` holds the built commit (`digest.gitCommit` = `github.sha`)
     and exactly one `oci://dhi.io/<repo>[:<tag>]` entry with `digest.sha256` = the DHI digest pinned
     in the Dockerfile. Certificate identity
-    `https://github.com/naqa92-portfolio-projects/harborlab/.github/workflows/golden.yml@<ref>` (or
+    `https://github.com/naqa92-portfolio-projects/harbor-lab/.github/workflows/golden.yml@<ref>` (or
     `build-image.yml@<ref>` when golden.yml calls it as a reusable workflow), issuer
     `https://token.actions.githubusercontent.com`, GitHub workflow SHA extension = the run's commit.
   - Each image is built by a job whose name contains the image name (`python`, `java`), with a step
@@ -320,7 +320,7 @@ M4 interface assumed by `tests/kyverno/**` (run through `tests/kyverno/run.sh`),
 
   Build identity (the reusable workflow that builds golden, app and fixture images): issuer
   `https://token.actions.githubusercontent.com`, subject regexp
-  `^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$`,
+  `^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@refs/heads/(main|prd-.+)$`,
   transparency log `https://rekor.sigstore.dev`.
 - Platform tier: pods in namespaces labelled `harborlab.io/tier=platform` whose name is none of
   `kube-system`, `cilium`, `argocd`, `kyverno`: the bootstrap namespaces are excluded by name, even when
@@ -343,7 +343,7 @@ M4 interface assumed by `tests/kyverno/**` (run through `tests/kyverno/run.sh`),
   that never enter `images/catalog.yaml`:
   `sha256.1bab11a9…6235` `deprecated` and `sha256.9a9fd7ff…2217` `eol`, the DHI `python:3.12-debian13` and
   `python:3.11-debian13` digests standing in for retired golden bases. `registries.yaml` holds the
-  production lists plus the workload prefix `ghcr.io/naqa92-portfolio-projects/harborlab/fixtures/`; the
+  production lists plus the workload prefix `ghcr.io/naqa92-portfolio-projects/harbor-lab/fixtures/`; the
   registry rule is still proven by `offlist/compliant`, a fully compliant image outside that prefix.
   `tests/ci/policy_ci.bats` enforces this superset relation and each fixture base's status.
 - Fixture images, sources in `tests/fixtures/images/<case>/Dockerfile` (test files), published by
@@ -359,13 +359,13 @@ M4 interface assumed by `tests/kyverno/**` (run through `tests/kyverno/run.sh`),
   that tag (the copies are tagged `sha-<commit>` too):
   | Reference | Published as |
   |---|---|
-  | `ghcr.io/naqa92-portfolio-projects/harborlab/fixtures/compliant:sha-<commit>` | `build-image.yml`, context `tests/fixtures/images/compliant` (`FROM` the supported golden python digest, nothing else) |
+  | `ghcr.io/naqa92-portfolio-projects/harbor-lab/fixtures/compliant:sha-<commit>` | `build-image.yml`, context `tests/fixtures/images/compliant` (`FROM` the supported golden python digest, nothing else) |
   | `…/fixtures/missing-labels:sha-<commit>` | `build-image.yml` on its context (golden python, required labels blanked: a Dockerfile cannot unset an inherited label) |
   | `…/fixtures/deprecated-base:sha-<commit>`, `…/fixtures/eol-base:sha-<commit>`, `…/fixtures/unknown-base:sha-<commit>` | `build-image.yml` on the same-named context (DHI python 3.12 / 3.11 / 3.13 base, required labels set, `USER 65532:65532`) |
   | `…/fixtures/unsigned:sha-<commit>` | copy of the compliant digest with no referrer (no signature, no attestation, no `sha256-*` tag) |
   | `…/fixtures/foreign-signer:sha-<commit>` | copy of the compliant digest signed (and attested) keyless by the `fixtures.yml` job itself, identity `…/fixtures.yml@refs/heads/<branch>`, never by `build-image.yml` |
   | `…/fixtures/no-sbom:sha-<commit>` | copy of the compliant digest whose referrers hold only the `build-image.yml` signature and SLSA provenance bundles (CycloneDX and SPDX bundles left out) |
-  | `ghcr.io/naqa92-portfolio-projects/harborlab/offlist/compliant:sha-<commit>` | copy of the compliant digest with all its referrers (signature and the three attestations) |
+  | `ghcr.io/naqa92-portfolio-projects/harbor-lab/offlist/compliant:sha-<commit>` | copy of the compliant digest with all its referrers (signature and the three attestations) |
 
   Harbor replication of the fixtures is not needed by M4 (the M9 demos decide). Renovate must leave
   `tests/**` alone (`ignorePaths`): the fixture bases are pinned to their E2E status.
@@ -415,7 +415,7 @@ M5 interface assumed by `tests/ci/app_contract.bats`, `tests/supply-chain/app_im
     Its real logic comes at M6.
   - `apps/hello-java/`: Spring Boot on Java 21; HTTP on port 8080, `GET /` → 200 with a non-empty body.
   - Each has `apps/<app>/Dockerfile`: every `FROM` is a digest-pinned golden reference
-    (`ghcr.io/naqa92-portfolio-projects/harborlab/golden/<name>[:<tag>]@sha256:<digest>` or
+    (`ghcr.io/naqa92-portfolio-projects/harbor-lab/golden/<name>[:<tag>]@sha256:<digest>` or
     `harbor.127.0.0.1.nip.io/golden/<name>[:<tag>]@sha256:<digest>`) whose (`name`, `digest`) is a `supported`
     entry of `images/catalog.yaml`, or an earlier stage alias; the final stage is `FROM` a golden reference
     directly, `python` for dt-bridge and `java` for hello-java (Temurin JRE). No `COPY`/`ADD` of a certificate
@@ -427,7 +427,7 @@ M5 interface assumed by `tests/ci/app_contract.bats`, `tests/supply-chain/app_im
   name; the live tests list runs of that file): `on.push.branches` lists `main` (and `prd-*` during the PRD,
   so that images exist before the merge), `on.push.paths` lists `apps/<app>/**`. Exactly one job, with no
   keys other than `name`, `uses`, `with`, `permissions`; `uses: ./.github/workflows/build-image.yml` (or
-  `naqa92-portfolio-projects/harborlab/.github/workflows/build-image.yml@<40 hex>`), the file's only `uses:`
+  `naqa92-portfolio-projects/harbor-lab/.github/workflows/build-image.yml@<40 hex>`), the file's only `uses:`
   line; `with` is exactly `{image: apps/<app>, context: apps/<app>}`; no `secrets` (a golden base needs no
   DHI credential); top-level and job `permissions` absent or granting only `contents: read`,
   `packages: write`, `id-token: write`; no key or value mentions cosign, syft, trivy, grype, notation,
@@ -436,13 +436,13 @@ M5 interface assumed by `tests/ci/app_contract.bats`, `tests/supply-chain/app_im
   without `continue-on-error: true`, placed before the step running `cosign sign`. The live test finds the
   step by that name in `build-image.yml` at the built commit and requires it concluded `success` in the app
   run's jobs.
-- Images: public `ghcr.io/naqa92-portfolio-projects/harborlab/apps/{dt-bridge,hello-java}`, tag
+- Images: public `ghcr.io/naqa92-portfolio-projects/harbor-lab/apps/{dt-bridge,hello-java}`, tag
   `sha-<github.sha>`. The live tests take, per app, the latest successful `<app>.yml` run on the branch of
   `GOLDEN_REF` (or the checked-out branch) whose commit is in the checked-out history and contains the last
   commit touching `apps/<app>` or `.github/workflows/<app>.yml`, then verify `…/apps/<app>@<digest of
   sha-<commit>>`: `cosign verify` and `verify-attestation` (`cyclonedx` with `components`, `spdxjson` with
   `packages`, `slsaprovenance1`) with issuer `https://token.actions.githubusercontent.com`, identity
-  `^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@<ref>$`
+  `^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@<ref>$`
   only, `--certificate-github-workflow-sha` = the commit; the app's own caller identity
   (`…/workflows/<app>.yml@…`), a foreign repository and `spike.yml` must not verify. The SLSA provenance
   records the commit (`digest.gitCommit`) and exactly one `oci://` dependency whose `digest.sha256` is the
@@ -474,7 +474,7 @@ M5 interface assumed by `tests/ci/app_contract.bats`, `tests/supply-chain/app_im
   Kyverno's hourly background scan, so PolicyReport `pass` results are eventual and not asserted in the test
   window. At test time, a server-side dry-run of pod `admission-probe` carrying the labels and exact spec of
   the first running app pod (same image, same digest) in the app namespace is admitted without `Warning`, and
-  the same spec with the app container on `ghcr.io/naqa92-portfolio-projects/harborlab/apps/<app>@<digest>`
+  the same spec with the app container on `ghcr.io/naqa92-portfolio-projects/harbor-lab/apps/<app>@<digest>`
   is denied naming `workload-registry` (control: the policies enforce there). Each workload policy is served
   by a validating webhook of the `kyverno` service whose `clientConfig.service.path` has the policy name as a
   segment (Kyverno 1.19: `/ivpol/validate/<policy>`, `/vpol/<policy>[/<policy>…]`), `sideEffects` `None` or
@@ -1007,7 +1007,7 @@ Public-repo rules, binding for every test:
 | CAT-024 | 24 | M1, M2, M6, M8 | unit, live | create | Live: OpenBao KV holds a non-empty entry for Harbor admin, each Harbor robot, the DT API key, the DHI pull token and the Harbor and DT database credentials (a live current version read as metadata by the metadata-only `platform-audit` role since A6; values measured only on the delivered Kubernetes Secrets, never printed); every Kubernetes Secret holding one of them is owned by an ExternalSecret. Each milestone adds its credentials to the test (M1 mechanism, M2 Harbor admin + robots + DB + DHI pull token, M6 the DT database, admin password and dt-bridge API key, and the dt-bridge Secrets of its Harbor robot and DHI credentials, M8 the Grafana admin `platform/grafana-admin` → `observability/grafana-admin`). Unit: gitleaks over the full git history reports nothing; the `DHI_TOKEN` value from the environment appears in no tracked file and no commit diff (`git grep -qF` / `git log -S` with output discarded). | `tests/platform/secrets.bats > "OpenBao holds every platform credential"`<br>`tests/platform/secrets.bats > "credential Secrets are delivered only by External Secrets"`<br>`tests/ci/secrets.bats > "git history holds no secret"`<br>`tests/ci/secrets.bats > "DHI token value is not committed"`<br>`tests/platform/harbor_configure.bats > "OpenTofu state is git-ignored, encrypted by OpenBao Transit and holds no robot secret"` |
 | CAT-025 | 25 (+ 22 doc, Decision 17) | M9 | unit | modify | `README.md`, `docs/ARCHITECTURE.md`, `docs/THREAT-MODEL.md`, `docs/DEMO.md`, `docs/ROADMAP.md` exist and are non-empty; `docs/adr/` holds one distinct ADR (Context, Decision, Consequences) per decision, matched by title: Kyverno CEL-only, Kubescape over Trivy Operator + Falco, Dependency-Track + dt-bridge, OpenTofu + goharbor provider over harbor-cli (no ADR titled harbor-cli over Terraform/OpenTofu), transparent mirror + trust tiers, keyless signing; an ADR records the Grype/Trivy divergence. "In English" is checked heuristically (no paragraph dominated by French function words, every required document present), a partial proof. README documents the prerequisites and the memory measurement of criterion 22 (`kubectl top nodes`, working set with page cache, 12 GiB). ROADMAP lists the Decision 17 items (air-gap bundle, Gatekeeper/Rego, Buildah, chart relocation as OCI) and keeps the upstream issues (DependencyTrack/dependency-track#6132, #6957, kyverno/sdk#125). | `tests/docs/docs.bats > "required documents exist"`<br>`tests/docs/docs.bats > "one ADR per structuring decision"`<br>`tests/docs/docs.bats > "documents are written in English"`<br>`tests/docs/docs.bats > "README documents the prerequisites and the memory budget measurement"`<br>`tests/docs/docs.bats > "roadmap lists the out-of-scope items and the tracked upstream issues"` |
 | CAT-FR1 | 9 (finding R1) | phase 3 | e2e, live | create | `kubectl debug` cannot bypass admission: in a workload namespace, an ephemeral container on Docker Hub busybox is denied by `workload-registry` and one on the unsigned fixture by `workload-image-signature` (debug container restricted-compliant, `--profile=restricted`, so Pod Security cannot be the refusal); the target pod keeps no ephemeral container. Live: a server dry-run patch of the `ephemeralcontainers` subresource of a running `runtime-demo` pod with Docker Hub busybox is refused by `workload-registry`. | `tests/chainsaw/workload/ephemeral-container/chainsaw-test.yaml` (+ `pod.yaml`)<br>`tests/platform/admission_scope.bats > "kubectl debug cannot add a Docker Hub ephemeral container in a workload namespace"` |
-| CAT-FR2 | 5, 9 (finding R2) | phase 3 | unit | create | The trusted identity is bound to this repository. Every `build-image.yml` job with `id-token: write` has `if: github.repository == 'naqa92-portfolio-projects/harborlab'` (in a reusable workflow `github.repository` is the caller). `workload-image-signature` compares the verified SLSA provenance (`extractPayload`) with `https://github.com/naqa92-portfolio-projects/harborlab` in a CEL expression (`keyless.additionalExtensions` is not enforced by ImageValidatingPolicy, kyverno/kyverno#15809, so it does not count). dt-bridge `signer_policy` accepts a Fulcio-shaped certificate for `build-image.yml@refs/heads/main` called from this repository and rejects the same SAN called from another repository or without repository extensions (certificates generated at test time, self-signed: only the identity policy reads them). No cosign/Kyverno test on a real foreign-repository certificate: producing one needs a run of `build-image.yml` from another GitHub repository. | `tests/ci/signing_identity.bats > "build-image.yml signs only when called from this repository"`<br>`tests/ci/signing_identity.bats > "workload signature policy binds the verified provenance to this repository"`<br>`apps/dt-bridge/tests/test_attestation_verification.py::test_signer_policy_accepts_build_image_called_from_this_repository`<br>`apps/dt-bridge/tests/test_attestation_verification.py::test_signer_policy_rejects_build_image_called_from_another_repository`<br>`apps/dt-bridge/tests/test_attestation_verification.py::test_signer_policy_rejects_a_certificate_without_repository_binding` |
+| CAT-FR2 | 5, 9 (finding R2) | phase 3 | unit | create | The trusted identity is bound to this repository. Every `build-image.yml` job with `id-token: write` has `if: github.repository == 'naqa92-portfolio-projects/harbor-lab'` (in a reusable workflow `github.repository` is the caller). `workload-image-signature` compares the verified SLSA provenance (`extractPayload`) with `https://github.com/naqa92-portfolio-projects/harbor-lab` in a CEL expression (`keyless.additionalExtensions` is not enforced by ImageValidatingPolicy, kyverno/kyverno#15809, so it does not count). dt-bridge `signer_policy` accepts a Fulcio-shaped certificate for `build-image.yml@refs/heads/main` called from this repository and rejects the same SAN called from another repository or without repository extensions (certificates generated at test time, self-signed: only the identity policy reads them). No cosign/Kyverno test on a real foreign-repository certificate: producing one needs a run of `build-image.yml` from another GitHub repository. | `tests/ci/signing_identity.bats > "build-image.yml signs only when called from this repository"`<br>`tests/ci/signing_identity.bats > "workload signature policy binds the verified provenance to this repository"`<br>`apps/dt-bridge/tests/test_attestation_verification.py::test_signer_policy_accepts_build_image_called_from_this_repository`<br>`apps/dt-bridge/tests/test_attestation_verification.py::test_signer_policy_rejects_build_image_called_from_another_repository`<br>`apps/dt-bridge/tests/test_attestation_verification.py::test_signer_policy_rejects_a_certificate_without_repository_binding` |
 | CAT-FT2 | 9 (finding T2) | phase 3 | unit, live | create | Git trusts `main` only: every build-image identity under `policies/` and every `SIGNER_IDENTITY_*` of `platform/workloads/dt-bridge/dt-bridge.yaml` accepts the SAN of `build-image.yml@refs/heads/main` and rejects `refs/heads/prd-999-any-branch`, `refs/heads/feature` and another repository (regexps run with jq; dt-bridge's as a full match). Rendered cluster config: the running ImageValidatingPolicies and the running dt-bridge Deployment trust `main` and the deployed platform revision (`targetRevision` of Application `argocd/root`) and reject `prd-999-not-deployed`. | `tests/ci/signing_identity.bats > "committed admission policies trust build-image.yml from main only"`<br>`tests/ci/signing_identity.bats > "committed dt-bridge signer identities trust main only"`<br>`tests/platform/admission_scope.bats > "running admission policies trust main and the deployed platform revision only"`<br>`tests/platform/admission_scope.bats > "running dt-bridge trusts main and the deployed platform revision only"` |
 | CAT-FA1 | 5, 7 (finding A1) | phase 3 | unit | create | Every `build-image.yml` step running `cosign sign`/`cosign attest` either has the `if:` of the `docker/build-push-action` step (skipped with the build) or mentions `steps.<build>.` in its `if:`, or reads only the build step's outputs (directly or through one step that reads nothing else): no path signs a pre-existing GHCR tag it neither built nor verified. | `tests/ci/build_workflow.bats > "build-image.yml signs and attests only the digest it built"` |
 | CAT-FA2 | 9 (finding A2) | phase 3 | unit | create | Neither the image labels (`with.labels` of the build step) nor the SLSA provenance step read outputs of a step that parses the Dockerfile text (awk/sed/grep/cut/read on `Dockerfile`); the provenance base comes from BuildKit's record of the build (the build step's `metadata` output, or a step reading it, `imagetools inspect` or `buildx history`). Lint on fixture repositories generated in `$BATS_TEST_TMPDIR`: a Dockerfile whose `# syntax=` directive names a custom frontend fails `FAILED from-golden`; a heredoc line spoofing a golden `FROM` after a Docker Hub base fails too (already green: the lint checks every FROM line, kept as a regression guard). | `tests/ci/build_workflow.bats > "base recorded in the image labels and SLSA provenance comes from BuildKit, not the Dockerfile text"`<br>`tests/ci/platform_lint.bats > "syntax directive naming a custom frontend fails the lint"`<br>`tests/ci/platform_lint.bats > "heredoc line spoofing a golden FROM fails the lint"` |

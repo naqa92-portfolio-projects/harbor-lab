@@ -23,7 +23,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-REGISTRY="ghcr.io/naqa92-portfolio-projects/harborlab"
+REGISTRY="ghcr.io/naqa92-portfolio-projects/harbor-lab"
 CATALOG="$REPO_ROOT/images/catalog.yaml"
 DEMO_FIXTURES="$REPO_ROOT/images/demo-fixtures.yaml"
 TIMEOUT="${RELEASE_REPIN_TIMEOUT:-900}"

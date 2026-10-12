@@ -27,7 +27,7 @@ spec:
           patch: |-
             - op: replace
               path: /spec/attestors/0/cosign/keyless/identities/0/subjectRegExp
-              value: ^https://github\.com/naqa92-portfolio-projects/harborlab/\.github/workflows/build-image\.yml@refs/heads/{{ include "harborlab.trustedRefs" . }}$
+              value: ^https://github\.com/naqa92-portfolio-projects/harbor-lab/\.github/workflows/build-image\.yml@refs/heads/{{ include "harborlab.trustedRefs" . }}$
     {{- end }}
   syncPolicy:
     {{- toYaml .Values.syncPolicy | nindent 4 }}

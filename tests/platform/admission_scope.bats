@@ -5,7 +5,7 @@
 
 REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/../.." && pwd)"
 PLATFORM_KUBECONFIG="$REPO_ROOT/.kube/harborlab.yaml"
-REPOSITORY=naqa92-portfolio-projects/harborlab
+REPOSITORY=naqa92-portfolio-projects/harbor-lab
 TIER_LABEL=harborlab.io/tier
 BOOTSTRAP_NAMESPACES='["kube-system", "cilium", "argocd", "kyverno"]'
 RUNTIME_DEMO=runtime-demo/runtime-demo

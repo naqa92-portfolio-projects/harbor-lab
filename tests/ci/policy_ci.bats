@@ -12,7 +12,7 @@ E2E_GOLDEN_PARAMS=tests/chainsaw/params/golden-images.yaml
 E2E_REGISTRY_PARAMS=tests/chainsaw/params/registries.yaml
 CATALOG=images/catalog.yaml
 FIXTURE_SOURCES=tests/fixtures/images
-FIXTURES_PREFIX=ghcr.io/naqa92-portfolio-projects/harborlab/fixtures/
+FIXTURES_PREFIX=ghcr.io/naqa92-portfolio-projects/harbor-lab/fixtures/
 HARBOR_WORKLOAD_PREFIXES=$'harbor.127.0.0.1.nip.io/apps/\nharbor.127.0.0.1.nip.io/golden/'
 FIXTURE_PIN=images/demo-fixtures.yaml
 FIXTURE_TAG_HELPER=tests/fixtures/fixture-tag.sh
@@ -251,7 +251,7 @@ version_at_least() {
   [ "$tag" = "sha-$commit" ] || fail "$FIXTURE_TAG_HELPER prints '$tag', expected sha-$commit"
 
   # Every fixture reference of the kyverno and Chainsaw cases names the pinned tag through the helper.
-  refs="$(grep -rhoE 'harborlab/(fixtures|offlist)/[a-z0-9-]+[:@][^[:space:]"]*' \
+  refs="$(grep -rhoE 'harbor-lab/(fixtures|offlist)/[a-z0-9-]+[:@][^[:space:]"]*' \
     "$REPO_ROOT/tests/kyverno" "$REPO_ROOT/tests/chainsaw" | sort -u)"
   [ -n "$refs" ] || fail "no fixture reference under tests/kyverno or tests/chainsaw"
   moving="$(grep -vE ':(\$\{FIXTURE_TAG\}|\$\(\.\./\.\./\.\./fixtures/fixture-tag\.sh\))$' <<<"$refs" || true)"

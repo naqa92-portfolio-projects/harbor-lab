@@ -8,7 +8,7 @@ SCRIPT=scripts/release-repin.sh
 FIXTURE_DOCKERFILES=(tests/fixtures/images/compliant/Dockerfile tests/fixtures/images/missing-labels/Dockerfile)
 CHAINSAW_PARAMS=tests/chainsaw/params/golden-images.yaml
 KYVERNO_CONTEXT=tests/kyverno/workload/context.yaml
-GHCR=ghcr.io/naqa92-portfolio-projects/harborlab
+GHCR=ghcr.io/naqa92-portfolio-projects/harbor-lab
 NEW_PYTHON=sha256:1111111111111111111111111111111111111111111111111111111111111111
 NEW_JAVA=sha256:2222222222222222222222222222222222222222222222222222222222222222
 
