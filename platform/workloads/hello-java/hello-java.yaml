@@ -43,7 +43,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: hello-java
-          image: harbor.127.0.0.1.nip.io/apps/hello-java@sha256:e5f2792b3ff1be2584e6972fa1435d6e71dc92c577e69496509db24454be1d7c
+          image: harbor.127.0.0.1.nip.io/apps/hello-java@sha256:428345593831cdac99c0044e31b9b3725bd136f451895a7f59a666602b80b21b
           ports:
             - name: http
               containerPort: 8080
