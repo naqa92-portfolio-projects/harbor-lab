@@ -46,7 +46,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: runtime-demo
-          image: harbor.127.0.0.1.nip.io/apps/runtime-demo@sha256:4fe83c9bdd7ed61e994057f6ff35fe90f9f40665b303f0e5d0fa1075bc760ad0
+          image: harbor.127.0.0.1.nip.io/apps/runtime-demo@sha256:f023c654155623036b0d11719748ff848987564530ec991a3c6fe5cebda6f486
           resources:
             requests:
               cpu: 5m
