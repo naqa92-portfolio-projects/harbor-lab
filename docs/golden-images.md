@@ -7,7 +7,7 @@ to `harbor.127.0.0.1.nip.io/golden/<name>`. Admission accepts `supported` bases,
 
 | Name | Version | Digest | Status | Released | EOL |
 |---|---|---|---|---|---|
-| python | 3.13 | `sha256:e32f2b89b624ad8d094985bf9683f3facfb12a30fa9d5461c19fc14893388850` | supported | 2024-10-07 | 2029-10-31 |
+| python | 3.13 | `sha256:b61a04390896be99bd3b88934ecfc03e282222a97b6f9445b593088bdc290b59` | supported | 2024-10-07 | 2029-10-31 |
 | python | 3.10 | `sha256:e894e53c81111533b90e41886a45916b946ca21b4baea4e1e32b282a063911de` | deprecated | 2021-10-04 | 2026-10-31 |
-| java | 21 | `sha256:3c7b8bc46802dc6fd16bb4a9e8e1d7eb9aa2430ea6e39f358102c84c7adeb95c` | supported | 2023-10-10 | 2029-12-31 |
+| java | 21 | `sha256:4fd0b5e1c22f8919d9fa11442c70e98c5c18435f5fd2601a33e60cab78692ddd` | supported | 2023-10-10 | 2029-12-31 |
 | java | 26 | `sha256:093236f5590b59f330253711e2e263a97e01e44f105509798b13d6564388dcbd` | eol | 2026-03-23 | 2026-09-15 |
