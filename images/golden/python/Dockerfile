@@ -1,5 +1,5 @@
 # Golden Python runtime: the Docker Hardened Image, re-labelled for governance and re-signed.
-FROM dhi.io/python:3.13-debian13@sha256:be3c790e05dd0a4b9f15c76846a2146a75833b3ed4d1fe11e7828fd27446cedd
+FROM dhi.io/python:3.13-debian13@sha256:142d09220574b12f622254d6bc4250c15a482295a8e11040325a8c6b68423c9d
 
 LABEL io.harborlab.tier="golden" \
       io.harborlab.golden.name="python" \
