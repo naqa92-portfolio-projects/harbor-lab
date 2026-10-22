@@ -12,8 +12,8 @@ spec:
         name: golden-images
         namespace: kyverno
       data:
-        sha256.b61a04390896be99bd3b88934ecfc03e282222a97b6f9445b593088bdc290b59: supported
-        sha256.4fd0b5e1c22f8919d9fa11442c70e98c5c18435f5fd2601a33e60cab78692ddd: supported
+        sha256.e32f2b89b624ad8d094985bf9683f3facfb12a30fa9d5461c19fc14893388850: supported
+        sha256.3c7b8bc46802dc6fd16bb4a9e8e1d7eb9aa2430ea6e39f358102c84c7adeb95c: supported
         sha256.1bab11a972258285639bebc02b334326c7bdfc1740fb438540728a4f3f896235: deprecated
         sha256.9a9fd7ffe996f9042cca4a2c0d167076a55b650cbd45a8bc535d9ab7d8ca2217: eol
     - apiVersion: v1
